@@ -1,0 +1,1530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tharaka Hotel | Hotel & Food Management</title>
+
+<style>
+:root {
+    --green: #174b38;
+    --gold: #e5ad42;
+    --light: #f4f6f3;
+    --dark: #17251e;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+}
+
+header {
+    background: var(--green);
+    color: white;
+    padding: 20px 6%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+nav button {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+nav button:hover,
+nav button.active {
+    color: var(--gold);
+}
+
+.hero {
+    min-height: 410px;
+    background:
+      linear-gradient(#0008,#0009),
+      url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600")
+      center/cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 6vw, 55px);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: var(--gold);
+    color: #17251e;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.btn:hover {
+    opacity: .85;
+}
+
+.btn-green {
+    background: var(--green);
+    color: white;
+}
+
+.btn-red {
+    background: #b52e2e;
+    color: white;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 18px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--green);
+    font-size: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #00000012;
+    margin-bottom: 15px;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin: 12px 0;
+    color: var(--green);
+}
+
+.price {
+    color: #a87513;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 10px 0;
+}
+
+.form {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.form label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.notice {
+    background: #fff0c9;
+    padding: 15px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+.cart-row {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: var(--green);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.stat h2 {
+    color: var(--gold);
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin: 15px 0 30px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: var(--green);
+    color: white;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.badge {
+    background: #e8f3e9;
+    color: #176b36;
+    padding: 5px 9px;
+    border-radius: 5px;
+}
+
+footer {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 8px;
+}
+
+.small {
+    font-size: 13px;
+    color: #777;
+}
+
+@media(max-width:650px) {
+    .header-content {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav button {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 330px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-content">
+
+<div class="logo">THARAKA HOTEL</div>
+
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('menu')">Food Menu</button>
+<button onclick="showPage('cart')">Cart (<span id="cartCount">0</span>)</button>
+<button onclick="showPage('booking')">Bookings</button>
+<button onclick="showPage('contact')">Contact</button>
+<button onclick="showPage('admin')">Admin</button>
+</nav>
+
+</div>
+</header>
+
+<!-- HOME PAGE -->
+
+<section id="home" class="section active">
+
+<div class="hero">
+<h1>Welcome to Tharaka Hotel</h1>
+<p>Delicious Meals. Comfortable Rooms. Excellent Hospitality.</p>
+<button class="btn" onclick="showPage('menu')">
+Explore Our Menu
+</button>
+<button class="btn" onclick="showPage('booking')">
+Book Now
+</button>
+</div>
+
+<div class="container">
+
+<h2 class="section-title">Welcome to Our Hotel</h2>
+
+<p style="text-align:center;line-height:1.8;margin-bottom:30px">
+Experience the best hospitality at Tharaka Hotel.
+Enjoy delicious Kenyan meals, quality services,
+comfortable accommodation and a welcoming environment.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600">
+<h3>Delicious Food</h3>
+<p>Enjoy freshly prepared meals at affordable prices.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600">
+<h3>Comfortable Rooms</h3>
+<p>Enjoy a relaxing and comfortable accommodation experience.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600">
+<h3>Restaurant Services</h3>
+<p>Reserve your table and enjoy our restaurant services.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOD MENU -->
+
+<section id="menu" class="section">
+<div class="container">
+
+<h2 class="section-title">Our Food Menu</h2>
+
+<input type="search" id="searchFood"
+placeholder="Search for food..."
+style="margin-bottom:25px">
+
+<div class="grid" id="menuGrid"></div>
+
+</div>
+</section>
+
+<!-- CART -->
+
+<section id="cart" class="section">
+<div class="container">
+
+<h2 class="section-title">Your Shopping Cart</h2>
+
+<div id="cartItems"></div>
+
+<div class="card">
+<h2 id="cartTotal">Total: KES 0</h2>
+<button class="btn" onclick="showPage('checkout')">
+Proceed to Checkout
+</button>
+<button class="btn btn-red" onclick="clearCart()">
+Clear Cart
+</button>
+</div>
+
+</div>
+</section>
+
+<!-- CHECKOUT -->
+
+<section id="checkout" class="section">
+<div class="container">
+
+<h2 class="section-title">Customer Checkout</h2>
+
+<div class="notice">
+This is a demonstration payment system.
+No real money will be transferred.
+</div>
+
+<form class="form" id="checkoutForm">
+
+<label>Full Name</label>
+<input id="customerName" required>
+
+<label>Phone Number</label>
+<input id="customerPhone" type="tel" required>
+
+<label>Email Address</label>
+<input id="customerEmail" type="email">
+
+<label>Delivery Location</label>
+<input id="customerLocation" placeholder="Enter delivery location">
+
+<label>Payment Method</label>
+<select id="paymentMethod" required>
+<option value="M-Pesa Demo">M-Pesa Demo</option>
+<option value="Card Demo">Card Payment Demo</option>
+<option value="Cash">Cash on Delivery</option>
+</select>
+
+<h3 id="checkoutTotal" style="margin-top:20px"></h3>
+
+<button class="btn">Place Order</button>
+
+</form>
+
+</div>
+</section>
+
+<!-- BOOKING -->
+
+<section id="booking" class="section">
+<div class="container">
+
+<h2 class="section-title">Hotel Reservations</h2>
+
+<form class="form" id="bookingForm">
+
+<label>Full Name</label>
+<input id="bookingName" required>
+
+<label>Phone Number</label>
+<input id="bookingPhone" type="tel" required>
+
+<label>Booking Type</label>
+<select id="bookingType">
+<option value="Room">Hotel Room</option>
+<option value="Table">Restaurant Table</option>
+</select>
+
+<div id="roomOptions">
+<label>Room Type</label>
+<select id="roomType">
+<option>Standard Room</option>
+<option>Deluxe Room</option>
+<option>Executive Room</option>
+</select>
+</div>
+
+<label>Booking Date</label>
+<input type="date" id="bookingDate" required>
+
+<label>Number of Guests</label>
+<input type="number" id="bookingGuests" min="1" value="1" required>
+
+<label>Additional Information</label>
+<textarea id="bookingNotes" placeholder="Any special requests?"></textarea>
+
+<button class="btn">Submit Reservation</button>
+
+</form>
+</div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="section">
+<div class="container">
+
+<h2 class="section-title">Contact Us</h2>
+
+<div class="card">
+<h3>Tharaka Hotel</h3>
+<p>Location: Marimanti, Tharaka-Nithi, Kenya</p>
+<p>Services: Accommodation, Restaurant and Catering.</p>
+<p>Currency: Kenyan Shillings (KES)</p>
+<p>Phone: Add your hotel phone number here.</p>
+</div>
+
+<form class="form" id="contactForm">
+<h3>Send Us a Message</h3>
+
+<label>Your Name</label>
+<input id="contactName" required>
+
+<label>Your Email</label>
+<input type="email" id="contactEmail" required>
+
+<label>Message</label>
+<textarea id="contactMessage" required></textarea>
+
+<button class="btn">Send Message</button>
+</form>
+
+</div>
+</section>
+
+<!-- ADMIN LOGIN -->
+
+<section id="admin" class="section">
+<div class="container">
+
+<div id="adminLogin">
+<h2 class="section-title">Administrator Login</h2>
+
+<form class="form" id="loginForm">
+
+<label>Username</label>
+<input id="adminUsername" required>
+
+<label>Password</label>
+<input type="password" id="adminPassword" required>
+
+<button class="btn btn-green">Login</button>
+
+<p class="small" style="margin-top:15px">
+Demo username: admin<br>
+Demo password: Admin@12345
+</p>
+
+</form>
+</div>
+
+<div id="dashboard" style="display:none">
+
+<h2 class="section-title">Admin Dashboard</h2>
+
+<button class="btn btn-red" onclick="adminLogout()">
+Logout
+</button>
+
+<div class="stats">
+
+<div class="stat">
+<p>Total Orders</p>
+<h2 id="totalOrders">0</h2>
+</div>
+
+<div class="stat">
+<p>Total Bookings</p>
+<h2 id="totalBookings">0</h2>
+</div>
+
+<div class="stat">
+<p>Demo Sales</p>
+<h2 id="totalSales">KES 0</h2>
+</div>
+
+<div class="stat">
+<p>Food Items</p>
+<h2 id="totalFood">0</h2>
+</div>
+
+</div>
+
+<!-- ADMIN MENU MANAGEMENT -->
+
+<h2>Manage Food Menu</h2>
+
+<form class="form" id="addFoodForm">
+
+<label>Food Name</label>
+<input id="newFoodName" required>
+
+<label>Description</label>
+<input id="newFoodDescription" required>
+
+<label>Category</label>
+<select id="newFoodCategory">
+<option>Main Meals</option>
+<option>Breakfast</option>
+<option>Drinks</option>
+<option>Snacks</option>
+</select>
+
+<label>Price (KES)</label>
+<input type="number" id="newFoodPrice" min="1" required>
+
+<label>Image URL (optional)</label>
+<input id="newFoodImage" placeholder="Paste an image URL">
+
+<button class="btn btn-green">Add Food Item</button>
+
+</form>
+
+<div id="adminFood"></div>
+
+<!-- ORDERS -->
+
+<h2 style="margin-top:35px">Customer Orders</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Customer</th>
+<th>Total</th>
+<th>Payment</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="ordersTable"></tbody>
+</table>
+</div>
+
+<!-- BOOKINGS -->
+
+<h2>Customer Bookings</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Type</th>
+<th>Date</th>
+<th>Guests</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="bookingsTable"></tbody>
+</table>
+</div>
+
+<h2>Payment Records</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Method</th>
+<th>Reference</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="paymentsTable"></tbody>
+</table>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer>
+<h2>THARAKA HOTEL</h2>
+<p>Quality Food | Comfortable Accommodation | Excellent Service</p>
+<p>Marimanti, Tharaka-Nithi, Kenya</p>
+<p>All Rights Reserved © 2026</p>
+<p class="small">Demo website. Payments are simulated.</p>
+</footer>
+
+<script>
+
+// ==================================
+// THARAKA HOTEL WEBSITE SYSTEM
+// ==================================
+
+// Initial food menu
+
+const defaultFoods = [
+{
+id:1,
+name:"Ugali and Beef",
+description:"Fresh beef served with ugali.",
+category:"Main Meals",
+price:350,
+image:"https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+available:true
+},
+{
+id:2,
+name:"Chapati and Beans",
+description:"Fresh chapati served with beans.",
+category:"Main Meals",
+price:150,
+image:"https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+available:true
+},
+{
+id:3,
+name:"Rice and Chicken",
+description:"Delicious chicken served with rice.",
+category:"Main Meals",
+price:350,
+image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600",
+available:true
+},
+{
+id:4,
+name:"Fried Fish and Ugali",
+description:"Fresh fried fish served with ugali.",
+category:"Main Meals",
+price:500,
+image:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600",
+available:true
+},
+{
+id:5,
+name:"Kienyeji Chicken",
+description:"Traditional Kenyan chicken meal.",
+category:"Main Meals",
+price:700,
+image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600",
+available:true
+},
+{
+id:6,
+name:"Fresh Juice",
+description:"Refreshing fresh fruit juice.",
+category:"Drinks",
+price:120,
+image:"https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600",
+available:true
+}
+];
+
+function loadData(key, fallback) {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : fallback;
+    } catch {
+        return fallback;
+    }
+}
+
+let foods = loadData("tharakaFoods", defaultFoods);
+let cart = loadData("tharakaCart", []);
+let orders = loadData("tharakaOrders", []);
+let bookings = loadData("tharakaBookings", []);
+let payments = loadData("tharakaPayments", []);
+
+function saveData() {
+    localStorage.setItem("tharakaFoods", JSON.stringify(foods));
+    localStorage.setItem("tharakaCart", JSON.stringify(cart));
+    localStorage.setItem("tharakaOrders", JSON.stringify(orders));
+    localStorage.setItem("tharakaBookings", JSON.stringify(bookings));
+    localStorage.setItem("tharakaPayments", JSON.stringify(payments));
+}
+
+function money(amount) {
+    return "KES " + Number(amount).toLocaleString("en-KE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function safe(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[c]);
+}
+
+// ==================================
+// PAGE NAVIGATION
+// ==================================
+
+function showPage(page) {
+
+    document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    window.scrollTo({top:0,behavior:"smooth"});
+
+    if(page === "menu") renderMenu();
+    if(page === "cart") renderCart();
+    if(page === "checkout") renderCheckout();
+    if(page === "admin") refreshAdmin();
+}
+
+// ==================================
+// FOOD MENU
+// ==================================
+
+function renderMenu() {
+
+    const grid = document.getElementById("menuGrid");
+
+    const search = document.getElementById("searchFood").value.toLowerCase();
+
+    const filtered = foods.filter(food =>
+        food.available &&
+        food.name.toLowerCase().includes(search)
+    );
+
+    if(filtered.length === 0) {
+        grid.innerHTML = "<p>No food items found.</p>";
+        return;
+    }
+
+    grid.innerHTML = filtered.map(food => `
+
+    <div class="card">
+
+        <img src="${safe(food.image)}"
+             alt="${safe(food.name)}"
+             onerror="this.src='https://placehold.co/400x250?text=Tharaka+Hotel'">
+
+        <h3>${safe(food.name)}</h3>
+
+        <p>${safe(food.description)}</p>
+
+        <p class="price">${money(food.price)}</p>
+
+        <button class="btn btn-green"
+        onclick="addToCart(${food.id})">
+        Add to Cart
+        </button>
+
+    </div>
+
+    `).join("");
+}
+
+document.getElementById("searchFood").addEventListener("input",renderMenu);
+
+// ==================================
+// SHOPPING CART
+// ==================================
+
+function addToCart(id) {
+
+    const food = foods.find(f => f.id === id && f.available);
+
+    if(!food) return;
+
+    const existing = cart.find(item => item.id === id);
+
+    if(existing) {
+        existing.quantity++;
+    } else {
+        cart.push({id:id,quantity:1});
+    }
+
+    saveData();
+    updateCartCount();
+
+    alert(food.name + " added to cart!");
+}
+
+function updateCartCount() {
+
+    const count = cart.reduce((sum,item) =>
+        sum + item.quantity,0
+    );
+
+    document.getElementById("cartCount").textContent = count;
+}
+
+function renderCart() {
+
+    const container = document.getElementById("cartItems");
+
+    let total = 0;
+
+    if(cart.length === 0) {
+        container.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+
+        container.innerHTML = cart.map(item => {
+
+            const food = foods.find(f => f.id === item.id);
+
+            if(!food || !food.available) return "";
+
+            const subtotal = food.price * item.quantity;
+
+            total += subtotal;
+
+            return `
+
+            <div class="cart-row">
+
+                <div>
+                    <h3>${safe(food.name)}</h3>
+                    <p>${money(food.price)} each</p>
+                </div>
+
+                <div>
+                    <button class="btn"
+                    onclick="changeQuantity(${item.id},-1)">-</button>
+
+                    ${item.quantity}
+
+                    <button class="btn"
+                    onclick="changeQuantity(${item.id},1)">+</button>
+                </div>
+
+                <strong>${money(subtotal)}</strong>
+
+                <button class="btn btn-red"
+                onclick="removeCart(${item.id})">
+                Remove
+                </button>
+
+            </div>
+
+            `;
+
+        }).join("");
+    }
+
+    document.getElementById("cartTotal").textContent =
+        "Total: " + money(total);
+
+    saveData();
+    updateCartCount();
+}
+
+function changeQuantity(id,amount) {
+
+    const item = cart.find(i => i.id === id);
+
+    if(!item) return;
+
+    item.quantity += amount;
+
+    if(item.quantity <= 0) {
+        cart = cart.filter(i => i.id !== id);
+    }
+
+    saveData();
+    renderCart();
+}
+
+function removeCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    saveData();
+    renderCart();
+}
+
+function clearCart() {
+
+    if(confirm("Clear your shopping cart?")) {
+        cart = [];
+        saveData();
+        renderCart();
+    }
+}
+
+// ==================================
+// CHECKOUT AND DEMO PAYMENTS
+// ==================================
+
+function renderCheckout() {
+
+    const total = cart.reduce((sum,item) => {
+
+        const food = foods.find(f => f.id === item.id && f.available);
+
+        return sum + (food ? food.price * item.quantity : 0);
+
+    },0);
+
+    document.getElementById("checkoutTotal").textContent =
+        "Total to Pay: " + money(total);
+}
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e) {
+
+    e.preventDefault();
+
+    if(cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const email = document.getElementById("customerEmail").value.trim();
+    const location = document.getElementById("customerLocation").value.trim();
+    const method = document.getElementById("paymentMethod").value;
+
+    if(!name || !phone) {
+        alert("Enter your name and phone number.");
+        return;
+    }
+
+    const items = [];
+
+    let total = 0;
+
+    for(const cartItem of cart) {
+
+        const food = foods.find(f =>
+            f.id === cartItem.id && f.available
+        );
+
+        if(!food) {
+            alert("A food item is unavailable. Please update your cart.");
+            return;
+        }
+
+        items.push({
+            name:food.name,
+            quantity:cartItem.quantity,
+            price:food.price
+        });
+
+        total += food.price * cartItem.quantity;
+    }
+
+    if(total <= 0) {
+        alert("Your order total is invalid.");
+        return;
+    }
+
+    const paid = method !== "Cash";
+
+    const order = {
+        id:Date.now(),
+        name,
+        phone,
+        email,
+        location,
+        items,
+        total,
+        method,
+        payment:paid ? "Demo Successful" : "Pending",
+        status:"Pending",
+        date:new Date().toLocaleString()
+    };
+
+    orders.push(order);
+
+    if(paid) {
+
+        payments.push({
+            orderId:order.id,
+            method,
+            reference:"DEMO-" + order.id,
+            amount:total,
+            status:"Demo Successful"
+        });
+
+    }
+
+    saveData();
+
+    cart = [];
+
+    saveData();
+
+    updateCartCount();
+
+    alert(
+        "ORDER SUCCESSFUL!\n\n" +
+        "Order Number: " + order.id + "\n" +
+        "Total: " + money(total) + "\n" +
+        "Payment: " + order.payment +
+        "\n\nDEMO ONLY - No real money transferred."
+    );
+
+    this.reset();
+
+    showPage("home");
+});
+
+// ==================================
+// ROOM AND TABLE BOOKINGS
+// ==================================
+
+document.getElementById("bookingType").addEventListener("change",function() {
+
+    document.getElementById("roomOptions").style.display =
+        this.value === "Room" ? "block" : "none";
+
+});
+
+document.getElementById("bookingDate").min =
+    new Date().toISOString().split("T")[0];
+
+document.getElementById("bookingForm").addEventListener("submit",function(e) {
+
+    e.preventDefault();
+
+    const date = document.getElementById("bookingDate").value;
+
+    if(date < new Date().toISOString().split("T")[0]) {
+        alert("Please select a future date.");
+        return;
+    }
+
+    const booking = {
+
+        id:Date.now(),
+
+        name:document.getElementById("bookingName").value.trim(),
+
+        phone:document.getElementById("bookingPhone").value.trim(),
+
+        type:document.getElementById("bookingType").value,
+
+        room:document.getElementById("roomType").value,
+
+        date,
+
+        guests:Number(document.getElementById("bookingGuests").value),
+
+        notes:document.getElementById("bookingNotes").value,
+
+        status:"Pending"
+
+    };
+
+    if(!booking.name || !booking.phone || booking.guests < 1) {
+        alert("Please complete your booking details.");
+        return;
+    }
+
+    bookings.push(booking);
+
+    saveData();
+
+    alert("Your booking has been submitted successfully!");
+
+    this.reset();
+
+    showPage("home");
+
+});
+
+// ==================================
+// CONTACT FORM
+// ==================================
+
+document.getElementById("contactForm").addEventListener("submit",function(e) {
+
+    e.preventDefault();
+
+    alert("Thank you for contacting Tharaka Hotel. This demo form does not send email.");
+
+    this.reset();
+
+});
+
+// ==================================
+// ADMIN LOGIN
+// ==================================
+
+let adminLoggedIn = false;
+
+// Demo login only. Not secure for public deployment.
+
+document.getElementById("loginForm").addEventListener("submit",function(e) {
+
+    e.preventDefault();
+
+    const username =
+        document.getElementById("adminUsername").value;
+
+    const password =
+        document.getElementById("adminPassword").value;
+
+    if(username === "admin" && password === "Admin@12345") {
+
+        adminLoggedIn = true;
+
+        document.getElementById("adminLogin").style.display = "none";
+
+        document.getElementById("dashboard").style.display = "block";
+
+        refreshAdmin();
+
+        alert("Welcome to Tharaka Hotel Admin Dashboard!");
+
+    } else {
+
+        alert("Incorrect administrator username or password.");
+
+    }
+
+});
+
+function adminLogout() {
+
+    adminLoggedIn = false;
+
+    document.getElementById("dashboard").style.display = "none";
+
+    document.getElementById("adminLogin").style.display = "block";
+
+    document.getElementById("loginForm").reset();
+
+}
+
+// ==================================
+// ADMIN DASHBOARD
+// ==================================
+
+function refreshAdmin() {
+
+    if(!adminLoggedIn) return;
+
+    document.getElementById("totalOrders").textContent = orders.length;
+
+    document.getElementById("totalBookings").textContent = bookings.length;
+
+    const sales = orders
+        .filter(o => o.payment === "Demo Successful")
+        .reduce((sum,o) => sum + o.total,0);
+
+    document.getElementById("totalSales").textContent = money(sales);
+
+    document.getElementById("totalFood").textContent = foods.length;
+
+    renderAdminFood();
+    renderAdminOrders();
+    renderAdminBookings();
+    renderPayments();
+}
+
+// ==================================
+// ADMIN FOOD MANAGEMENT
+// ==================================
+
+document.getElementById("addFoodForm").addEventListener("submit",function(e) {
+
+    e.preventDefault();
+
+    const food = {
+
+        id:Date.now(),
+
+        name:document.getElementById("newFoodName").value.trim(),
+
+        description:document.getElementById("newFoodDescription").value.trim(),
+
+        category:document.getElementById("newFoodCategory").value,
+
+        price:Number(document.getElementById("newFoodPrice").value),
+
+        image:document.getElementById("newFoodImage").value.trim() ||
+        "https://placehold.co/400x250?text=Tharaka+Hotel",
+
+        available:true
+
+    };
+
+    if(!food.name || food.price <= 0) {
+        alert("Enter a valid food name and price.");
+        return;
+    }
+
+    foods.push(food);
+
+    saveData();
+
+    this.reset();
+
+    refreshAdmin();
+
+    alert("Food item added successfully!");
+
+});
+
+function renderAdminFood() {
+
+    document.getElementById("adminFood").innerHTML = `
+
+    <div class="grid">
+
+    ${foods.map(food => `
+
+        <div class="card">
+
+            <h3>${safe(food.name)}</h3>
+
+            <p>${money(food.price)}</p>
+
+            <p>${food.available ? "Available" : "Unavailable"}</p>
+
+            <button class="btn"
+            onclick="toggleFood(${food.id})">
+            Toggle Availability
+            </button>
+
+            <button class="btn btn-red"
+            onclick="deleteFood(${food.id})">
+            Delete
+            </button>
+
+        </div>
+
+    `).join("")}
+
+    </div>
+
+    `;
+
+}
+
+function toggleFood(id) {
+
+    const food = foods.find(f => f.id === id);
+
+    if(!food) return;
+
+    food.available = !food.available;
+
+    saveData();
+
+    refreshAdmin();
+
+}
+
+function deleteFood(id) {
+
+    if(!confirm("Delete this food item?")) return;
+
+    foods = foods.filter(f => f.id !== id);
+
+    saveData();
+
+    refreshAdmin();
+
+}
+
+// ==================================
+// ADMIN ORDER MANAGEMENT
+// ==================================
+
+function renderAdminOrders() {
+
+    document.getElementById("ordersTable").innerHTML = orders.map(order => `
+
+    <tr>
+
+        <td>${order.id}</td>
+
+        <td>${safe(order.name)}<br>${safe(order.phone)}</td>
+
+        <td>${money(order.total)}</td>
+
+        <td>${safe(order.payment)}</td>
+
+        <td>${safe(order.status)}</td>
+
+        <td>
+
+            <select onchange="updateOrder(${order.id},this.value)">
+
+                <option value="Pending" ${order.status==="Pending"?"selected":""}>Pending</option>
+
+                <option value="Preparing" ${order.status==="Preparing"?"selected":""}>Preparing</option>
+
+                <option value="Ready" ${order.status==="Ready"?"selected":""}>Ready</option>
+
+                <option value="Delivered" ${order.status==="Delivered"?"selected":""}>Delivered</option>
+
+                <option value="Cancelled" ${order.status==="Cancelled"?"selected":""}>Cancelled</option>
+
+            </select>
+
+        </td>
+
+    </tr>
+
+    `).join("");
+
+}
+
+function updateOrder(id,status) {
+
+    const order = orders.find(o => o.id === id);
+
+    if(!order) return;
+
+    order.status = status;
+
+    saveData();
+
+    refreshAdmin();
+
+}
+
+// ==================================
+// ADMIN BOOKING MANAGEMENT
+// ==================================
+
+function renderAdminBookings() {
+
+    document.getElementById("bookingsTable").innerHTML = bookings.map(booking => `
+
+    <tr>
+
+        <td>${safe(booking.name)}</td>
+
+        <td>${safe(booking.phone)}</td>
+
+        <td>${safe(booking.type)} ${booking.type==="Room"?"- "+safe(booking.room):""}</td>
+
+        <td>${safe(booking.date)}</td>
+
+        <td>${booking.guests}</td>
+
+        <td>${safe(booking.status)}</td>
+
+        <td>
+
+            <select onchange="updateBooking(${booking.id},this.value)">
+
+                <option value="Pending" ${booking.status==="Pending"?"selected":""}>Pending</option>
+
+                <option value="Confirmed" ${booking.status==="Confirmed"?"selected":""}>Confirmed</option>
+
+                <option value="Completed" ${booking.status==="Completed"?"selected":""}>Completed</option>
+
+                <option value="Cancelled" ${booking.status==="Cancelled"?"selected":""}>Cancelled</option>
+
+            </select>
+
+        </td>
+
+    </tr>
+
+    `).join("");
+
+}
+
+function updateBooking(id,status) {
+
+    const booking = bookings.find(b => b.id === id);
+
+    if(!booking) return;
+
+    booking.status = status;
+
+    saveData();
+
+    refreshAdmin();
+
+}
+
+// ==================================
+// PAYMENT MANAGEMENT
+// ==================================
+
+function renderPayments() {
+
+    document.getElementById("paymentsTable").innerHTML = payments.map(payment => `
+
+    <tr>
+
+        <td>${payment.orderId}</td>
+
+        <td>${safe(payment.method)}</td>
+
+        <td>${safe(payment.reference)}</td>
+
+        <td>${money(payment.amount)}</td>
+
+        <td>${safe(payment.status)}</td>
+
+    </tr>
+
+    `).join("");
+
+}
+
+// ==================================
+// START WEBSITE
+// ==================================
+
+renderMenu();
+updateCartCount();
+
+</script>
+
+</body>
+</html>
